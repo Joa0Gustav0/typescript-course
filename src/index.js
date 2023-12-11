@@ -3,18 +3,14 @@
 };
 
 console.log(sumNumbers(2, 2)); */
-
 /* const array:{}[] = [{},{},{}] */
-
 /* var student: {name: string, id:number}
 student = {name: "pedro", id: 455} */
-
 /* var allStudents: {name: string, id: number}[];
 
 allStudents = [
     {name: "", id: 2},
 ]; */
-
 /* interface loginParameters {
   username: string;
   password: number | string;
@@ -25,7 +21,6 @@ function login(data: loginParameters): void {
 }
 
 login({username: "Ana", password: 123}) */
-
 /* class student {
   name;
   age;
@@ -56,7 +51,6 @@ const choosenStudent = new student("Carlos", 26, true);
 
 console.log(choosenStudent);
 choosenStudent.displayData(); */
-
 /* interface dataParameters {
     username: string;
     password: number;
@@ -88,7 +82,6 @@ class login implements dataParameters {
 const getLogin = new login("Xevil300", 12345, false)
 
 getLogin.displayData() */
-
 /* interface loginParameters {
     username: string;
     password: number | string;
@@ -103,7 +96,6 @@ function displayLoginData(data: loginParameters) {
     }
     console.log("O acesso a essas informações foi negado.")
 }displayLoginData({username: "Xevil300", password: "kdajskd876867", dataAccess: false}); */
-
 /* class login {
   username;
   password;
@@ -159,9 +151,7 @@ const user = new userInput(false)
 
 user.displayMainData();
 user.displayExtraData(); */
-
 //DECORATORS
-
 /* function loginExtraInformations (target: any):any {
     return class extends target {
         loginDate = `${new Date().getHours()}:${new Date().getMinutes()}`;
@@ -201,7 +191,6 @@ pessoa2.profissao = "Padeiro";
 let pessoa3: pessoas = { nome: "laura", idade: 32, profissao: "Atriz" };
 
 let pessoa4: pessoas = { nome: "Carlos", idade: 19, profissao: "padeiro" }; */
-
 /* let botaoAtualizar = document.getElementById("atualizar-saldo")!;
 let botaoLimpar = document.getElementById("limpar-saldo")!;
 let soma = document.getElementById("soma");
@@ -241,7 +230,6 @@ botaoLimpar.addEventListener("click", function () {
     <button id="limpar-saldo">Limpar seu saldo</button>
     <h1>"Seu saldo é: " <span id="campo-saldo"></span></h1>
  */
-
 /* class mainUserInfos {
   username = "Paulo";
   password = "1kjdsalkdajslo8";
@@ -281,19 +269,9 @@ const dataAccess = new extraUserInfos(true, true);
 
 dataAccess.displayMainData();
 dataAccess.displayExtraData(); */
-
-/* function filter<T>( arr: T[]): T[] {
-  arr.pop()
-  return arr;
+function filter(arr) {
+    arr.pop();
+    return arr;
 }
-
-console.log(filter([14, 16, 23, 25, 10]))
-console.log(filter(["Gustavo", "Mariana", "Wynne"])) */
-
-/* enum figure {
-  width = 5,
-  height = 12,
-  hypotenuse = Math.sqrt(width**2 + height**2)
-}
-
-console.log(figure) */
+console.log(filter([14, 16, 23, 25, 10]));
+console.log(filter(["Gustavo", "Mariana", "Wynne"]));
