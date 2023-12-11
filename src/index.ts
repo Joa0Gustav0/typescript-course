@@ -182,5 +182,64 @@ class login {
 const newLogin = new login ("Carlos", 12345)
 
 console.log(newLogin) */
+/* interface pessoas {
+  nome: string;
+  idade: number;
+  profissao: string;
+}
+
+let pessoa1: pessoas = { nome: "", idade: 0, profissao: "" };
+pessoa1.nome = "maria";
+pessoa1.idade = 29;
+pessoa1.profissao = "atriz";
+
+let pessoa2: pessoas = { nome: "", idade: 0, profissao: "" };
+pessoa2.nome = "roberto";
+pessoa2.idade = 19;
+pessoa2.profissao = "Padeiro";
+
+let pessoa3: pessoas = { nome: "laura", idade: 32, profissao: "Atriz" };
+
+let pessoa4: pessoas = { nome: "Carlos", idade: 19, profissao: "padeiro" }; */
+
+/* let botaoAtualizar = document.getElementById("atualizar-saldo")!;
+let botaoLimpar = document.getElementById("limpar-saldo")!;
+let soma = document.getElementById("soma");
+let campoSaldo: HTMLElement | null = document.getElementById("campo-saldo");
+
+if (campoSaldo) {
+  campoSaldo.innerHTML = String(0);
+}
+
+function somarAoSaldo(soma: number) {
+  if (campoSaldo) {
+    campoSaldo.innerHTML += soma.toString();
+  }
+}
+
+function limparSaldo() {
+  if (campoSaldo) {
+    campoSaldo.innerHTML = String(0);
+  }
+}
+
+botaoAtualizar.addEventListener("click", function () {
+  if (soma && soma.getAttribute("value")) {
+    if (soma.getAttribute("value")) {
+      somarAoSaldo(Number(soma));
+    }
+  }
+});
+
+botaoLimpar.addEventListener("click", function () {
+  limparSaldo();
+});
+
+/**
+    <h4>Valor a ser adicionado: <input id="soma"> </h4>
+    <button id="atualizar-saldo">Atualizar saldo</button>
+    <button id="limpar-saldo">Limpar seu saldo</button>
+    <h1>"Seu saldo é: " <span id="campo-saldo"></span></h1>
+ */
 
 
