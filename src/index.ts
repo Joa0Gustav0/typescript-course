@@ -159,3 +159,28 @@ const user = new userInput(false)
 
 user.displayMainData();
 user.displayExtraData(); */
+
+//DECORATORS
+
+/* function loginExtraInformations (target: any):any {
+    return class extends target {
+        loginDate = `${new Date().getHours()}:${new Date().getMinutes()}`;
+    }
+}
+
+@loginExtraInformations
+class login {
+  username;
+  password;
+
+  constructor(username: string, password: string | number) {
+    this.username = username;
+    this.password = password;
+  }
+}
+
+const newLogin = new login ("Carlos", 12345)
+
+console.log(newLogin) */
+
+
