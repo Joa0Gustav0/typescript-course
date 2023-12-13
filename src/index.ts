@@ -297,3 +297,185 @@ console.log(filter(["Gustavo", "Mariana", "Wynne"])) */
 }
 
 console.log(figure) */
+
+/* function logger(target: any) {
+  return class extends target {
+    message = "O nome inserido refere-se a um estudante.";
+  };
+}
+
+@logger
+class student {
+  constructor(name: string) {}
+}
+
+console.log(new student('Paulo')); */
+
+/* function delay() {
+  return (target: any, key: string, descriptor: PropertyDescriptor) => {
+    const originalMethod = descriptor.value;
+
+    descriptor.value = () => {
+      console.log("loginTime: " + `${new Date().getHours()}:${new Date().getMinutes()}`);
+    }
+
+    return descriptor;
+  }
+}
+
+class user {
+  name;
+
+  constructor (name: string) {
+    this.name = name;
+  }
+
+
+  @delay()
+  login() {
+    console.log(this.name)
+  }
+}
+
+new user("Paulo").login() */
+
+//CLASS DECORATORS
+
+function logger(): any {
+  return (target: any) => {
+    return class extends target {
+      lastLogin =
+        new Date().getHours() + "h:" + new Date().getMinutes() + "min";
+    };
+  };
+}
+
+@logger()
+class user {
+  username;
+  password;
+
+  constructor(un: string, pss: string | number) {
+    this.username = un;
+    this.password = pss;
+  }
+}
+
+console.log(new user("Xevil300", "skjdsfsh800"));
+
+//PROPERTIES DECORATORS
+
+/* function tester(minL: number) {
+  return (target: any, key: string) => {
+    var v = target[key];
+
+    const getter = () => v
+    const setter = (value: string) => {
+      if (value.length < minL) {
+        throw new Error("value for " + key + "is invalid.")
+      }
+
+      v = value;
+    }
+
+    Object.defineProperty(target, key, {
+      get: getter, 
+      set: setter,
+    })
+  }
+}
+
+class movie {
+  @tester(5)
+  movieName;
+
+  constructor(name: string) {
+    this.movieName = name;
+  }
+}
+
+console.log(new movie("d")) */
+
+function loginWatcher() {
+  return (target: any, key: string) => {
+    var currentValue = target[key];
+
+    const getter = () => currentValue;
+    const setter = (value: string) => {
+      currentValue = value;
+      localStorage.setItem(
+        "lastLogin",
+        `${new Date().getHours()}h:${new Date().getMinutes()}min`
+      );
+    };
+
+    Object.defineProperty(target, key, {
+      get: getter,
+      set: setter,
+    });
+  };
+}
+
+class login {
+  @loginWatcher()
+  lastLogin = localStorage.getItem("lastLogin");
+  currentLogin = `${new Date().getHours()}h:${new Date().getMinutes()}min`;
+}
+
+console.log(new login());
+
+//METHODS DECORATORS
+
+/* function act(action: string) {
+  return (target: any, key: string, descriptor: PropertyDescriptor) => {
+    const baseMethod = descriptor.value;
+
+    const choosenAction = "walk"
+
+    if (action === choosenAction) {
+      baseMethod.apply();
+    }
+  }
+}
+
+class action {
+
+  @act("drink water")
+  drinkWater() {
+    console.log('Você está bebendo água.')
+  }
+
+  @act("walk")
+  walk() {
+    console.log("Você está caminhando.")
+  }
+} */
+
+function delay(ms: number) {
+  return (target: any, key: string, descriptor: PropertyDescriptor) => {
+    const baseMethod = descriptor.value;
+
+    descriptor.value = function() {
+      setTimeout((...args: any) => {
+        baseMethod.apply(this, args)
+      }, ms)
+    }
+
+    return descriptor;
+  }
+}
+
+class example {
+  username;
+
+  constructor(name: string) {
+    this.username = name;
+  }
+
+  @delay(5000)
+  display() {
+    console.log(this.username);
+  }
+}
+
+new example("João").display();
