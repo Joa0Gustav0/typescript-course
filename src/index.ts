@@ -455,14 +455,14 @@ function delay(ms: number) {
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
     const baseMethod = descriptor.value;
 
-    descriptor.value = function() {
+    descriptor.value = function () {
       setTimeout((...args: any) => {
-        baseMethod.apply(this, args)
-      }, ms)
-    }
+        baseMethod.apply(this, args);
+      }, ms);
+    };
 
     return descriptor;
-  }
+  };
 }
 
 class example {
@@ -479,3 +479,79 @@ class example {
 }
 
 new example("João").display();
+
+//training
+
+function openBox(open: boolean) {
+  return (target: any, propertyKey: string) => {
+    var val = target[propertyKey];
+
+    const getter = () => val;
+    const setter = (value: string) => {
+      val = value;
+      if (!open) {
+        console.log("The Evil still here.");
+        return;
+      }
+      console.log("The Evil scaped.")
+    }
+
+    Object.defineProperty(target, propertyKey, {get: getter, set: setter})
+  }
+}
+
+class pandoraBox {
+  @openBox(false)
+  content = "Evil is here."
+}
+
+new pandoraBox()
+
+//---------
+
+function add() {
+  return (target: any, propertyKey: string) => {
+    var val = target[propertyKey];
+    
+    const getter = () => val;
+    const setter = (value: string) => {
+      const arr = JSON.parse(localStorage.getItem("cart")!);
+
+      if (!arr) {
+        val = [value];
+        localStorage.setItem("cart", JSON.stringify(val));
+        console.log(val)
+        return;
+      }
+
+      if (!arr.includes(value)) {
+        if (value.length < 5) {
+          throw new Error("Product name length should be greater than 4 characters.")
+          return;
+        }
+        arr.push(value);
+        val = arr;
+        localStorage.setItem("cart", JSON.stringify(arr));
+      }
+
+      console.log(arr);
+    }
+
+    Object.defineProperty(target, propertyKey, {
+      get: getter,
+      set: setter,
+    })
+  }
+}
+
+class cart {
+  @add()
+  products;
+
+  constructor(product: string) {
+    this.products = product;
+  }
+}
+
+new cart("Cellphone")
+

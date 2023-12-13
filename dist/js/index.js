@@ -72,3 +72,65 @@ __decorate([
     delay(5000)
 ], example.prototype, "display", null);
 new example("João").display();
+function openBox(open) {
+    return (target, propertyKey) => {
+        var val = target[propertyKey];
+        const getter = () => val;
+        const setter = (value) => {
+            val = value;
+            if (!open) {
+                console.log("The Evil still here.");
+                return;
+            }
+            console.log("The Evil scaped.");
+        };
+        Object.defineProperty(target, propertyKey, { get: getter, set: setter });
+    };
+}
+class pandoraBox {
+    constructor() {
+        this.content = "Evil is here.";
+    }
+}
+__decorate([
+    openBox(false)
+], pandoraBox.prototype, "content", void 0);
+new pandoraBox();
+function add() {
+    return (target, propertyKey) => {
+        var val = target[propertyKey];
+        const getter = () => val;
+        const setter = (value) => {
+            const arr = JSON.parse(localStorage.getItem("cart"));
+            if (!arr) {
+                val = [value];
+                localStorage.setItem("cart", JSON.stringify(val));
+                console.log(val);
+                return;
+            }
+            if (!arr.includes(value)) {
+                if (value.length < 5) {
+                    throw new Error("Product name length should be greater than 4 characters.");
+                    return;
+                }
+                arr.push(value);
+                val = arr;
+                localStorage.setItem("cart", JSON.stringify(arr));
+            }
+            console.log(arr);
+        };
+        Object.defineProperty(target, propertyKey, {
+            get: getter,
+            set: setter,
+        });
+    };
+}
+class cart {
+    constructor(product) {
+        this.products = product;
+    }
+}
+__decorate([
+    add()
+], cart.prototype, "products", void 0);
+new cart("Cellphone");
