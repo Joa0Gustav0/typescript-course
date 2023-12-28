@@ -64,7 +64,7 @@ class order implements advancedOrderInfos {
     } else {
       this.status = orderStatus.deliverying;
     }
-    return this.display();
+    return this;
   }
 
   constructor(d: orderInfos) {
@@ -79,18 +79,9 @@ const newOrder = new order({
   price: 15.6,
 });
 
-console.log(newOrder.display());
+console.log(newOrder.updateStatus().display());
 
 //----------------------
-
-function logger() {
-  return (target: any, key: string) => {
-    Object.defineProperty(target, key, {
-      get: () => target[key],
-      set: () => "empty",
-    });
-  };
-}
 
 class user {
   name = "dashdjkah";

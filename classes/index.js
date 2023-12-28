@@ -57,7 +57,7 @@ var order = /** @class */ (function () {
         else {
             this.status = orderStatus.deliverying;
         }
-        return this.display();
+        return this;
     };
     return order;
 }());
@@ -65,16 +65,8 @@ var newOrder = new order({
     item: "ba",
     price: 15.6,
 });
-console.log(newOrder.display());
+console.log(newOrder.updateStatus().display());
 //----------------------
-function logger() {
-    return function (target, key) {
-        Object.defineProperty(target, key, {
-            get: function () { return target[key]; },
-            set: function () { return "empty"; },
-        });
-    };
-}
 var user = /** @class */ (function () {
     function user() {
         this.name = "dashdjkah";
