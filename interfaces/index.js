@@ -27,3 +27,8 @@ var newVerifiedStudent = {
     verified: true,
     busSeat: 23,
 };
+var newMemberCostumer = {
+    name: "Gustavo",
+    age: 32,
+    benefits: ["free-delivery", "daily-cupoms"]
+};

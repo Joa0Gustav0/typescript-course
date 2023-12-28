@@ -48,15 +48,15 @@ interface student {
 }
 
 interface student {
-    contact: string | number;
+  contact: string | number;
 }
 
 var newStudent: student = {
-    name: "Gustavo",
-    age: 17,
-    reagistrationId: 20150321,
-    contact: 7893732432,
-}
+  name: "Gustavo",
+  age: 17,
+  reagistrationId: 20150321,
+  contact: 7893732432,
+};
 
 //Interface extends
 interface verifiedStudent extends student {
@@ -71,4 +71,21 @@ var newVerifiedStudent: verifiedStudent = {
     contact: 7893732432,
     verified: true,
     busSeat: 23,
+}
+
+type costumer = {
+  name: string;
+  age: number;
+};
+
+type memberCostumerProps = {
+  benefits: string[];
+};
+
+type memberCostumer = costumer & memberCostumerProps;
+
+var newMemberCostumer: memberCostumer = {
+    name: "Gustavo",
+    age: 32,
+    benefits: ["free-delivery", "daily-cupoms"]
 }
