@@ -5,6 +5,7 @@ interface playerParams {
 }
 
 class player {
+  //Instance Properties
   name;
   tag;
 
@@ -13,6 +14,7 @@ class player {
     this.tag = d.tag;
   }
 
+  //Instance Methods
   walk() {
     return this.name + " is walking..." + "(player_tag: " + this.tag + ")";
   }
@@ -45,7 +47,15 @@ class order implements advancedOrderInfos {
   status: orderStatus;
 
   display() {
-    return "Pedido: { item: " + this.item + "; valor: R$" + this.price + "; status: " + this.status + " }";
+    return (
+      "Pedido: { item: " +
+      this.item +
+      "; valor: R$" +
+      this.price +
+      "; status: " +
+      this.status +
+      " }"
+    );
   }
 
   updateStatus() {
@@ -70,3 +80,31 @@ const newOrder = new order({
 });
 
 console.log(newOrder.display());
+
+//----------------------
+
+function logger() {
+  return (target: any, key: string) => {
+    Object.defineProperty(target, key, {
+      get: () => target[key],
+      set: () => "empty",
+    });
+  };
+}
+
+class user {
+  name = "dashdjkah";
+  password = "sadas7687678";
+
+  get display() {
+    return this.password;
+  }
+  set p(d: { n: string; p: string }) {
+    this.name = d.n;
+    this.password = d.p;
+  }
+}
+
+const newUser = new user();
+newUser.p = { n: "Gustavo", p: "gustavo2409" };
+console.log(newUser.display);

@@ -3,6 +3,7 @@ var player = /** @class */ (function () {
         this.name = d.name;
         this.tag = d.tag;
     }
+    //Instance Methods
     player.prototype.walk = function () {
         return this.name + " is walking..." + "(player_tag: " + this.tag + ")";
     };
@@ -26,7 +27,13 @@ var order = /** @class */ (function () {
         this.status = orderStatus.confirmation;
     }
     order.prototype.display = function () {
-        return "Pedido: { item: " + this.item + "; valor: R$" + this.price + "; status: " + this.status + " }";
+        return ("Pedido: { item: " +
+            this.item +
+            "; valor: R$" +
+            this.price +
+            "; status: " +
+            this.status +
+            " }");
     };
     order.prototype.updateStatus = function () {
         if (this.status === orderStatus.confirmation) {
@@ -44,3 +51,37 @@ var newOrder = new order({
     price: 15.6,
 });
 console.log(newOrder.display());
+//----------------------
+function logger() {
+    return function (target, key) {
+        Object.defineProperty(target, key, {
+            get: function () { return target[key]; },
+            set: function () { return "empty"; },
+        });
+    };
+}
+var user = /** @class */ (function () {
+    function user() {
+        this.name = "dashdjkah";
+        this.password = "sadas7687678";
+    }
+    Object.defineProperty(user.prototype, "display", {
+        get: function () {
+            return this.password;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(user.prototype, "p", {
+        set: function (d) {
+            this.name = d.n;
+            this.password = d.p;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return user;
+}());
+var newUser = new user();
+newUser.p = { n: "Gustavo", p: "gustavo2409" };
+console.log(newUser.display);
