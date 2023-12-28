@@ -1,3 +1,18 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var player = /** @class */ (function () {
     function player(d) {
         this.name = d.name;
@@ -102,3 +117,28 @@ var child = /** @class */ (function () {
 var child1 = new child("Robert", 7);
 var child2 = new child("Julia", 4);
 console.log(child.compareAge(child1, child2));
+//-----------------------
+var costumer = /** @class */ (function () {
+    function costumer(n, a, nos) {
+        this.name = n;
+        this.age = a;
+        this.numberOfSales = nos;
+    }
+    return costumer;
+}());
+var memberCostumer = /** @class */ (function (_super) {
+    __extends(memberCostumer, _super);
+    function memberCostumer(n, a, nos, b) {
+        var _this = _super.call(this, n, a, nos) || this;
+        _this.benefits = b;
+        return _this;
+    }
+    memberCostumer.prototype.displayBenefits = function () {
+        return this.benefits;
+    };
+    return memberCostumer;
+}(costumer));
+var newCostumer = new costumer("Gustavo", 24, 32);
+var newMember = new memberCostumer("Gustavo", 24, 32, ["daily-cupoms", "discount"]);
+console.log(newCostumer);
+console.log(newMember);

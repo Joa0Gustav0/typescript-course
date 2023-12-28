@@ -122,7 +122,7 @@ class child {
 
   static compareAge(c1: child, c2: child) {
     if (c1.age > c2.age) {
-        return c1.name + " is older than " + c2.name;
+      return c1.name + " is older than " + c2.name;
     }
     return c2.name + " is older than " + c1.name;
   }
@@ -130,5 +130,37 @@ class child {
 
 const child1 = new child("Robert", 7);
 const child2 = new child("Julia", 4);
-console.log(child.compareAge(child1, child2))
+console.log(child.compareAge(child1, child2));
 
+//-----------------------
+
+class costumer {
+  name;
+  age;
+  numberOfSales;
+
+  constructor(n: string, a: number, nos: number) {
+    this.name = n;
+    this.age = a;
+    this.numberOfSales = nos;
+  }
+}
+
+class memberCostumer extends costumer {
+  benefits;
+
+  constructor (n: string, a: number, nos: number, b: Array<string>) {
+    super (n, a, nos);
+    this.benefits = b;
+  }
+
+  displayBenefits() {
+    return this.benefits;
+  }
+}
+
+const newCostumer = new costumer("Gustavo", 24, 32);
+const newMember = new memberCostumer("Gustavo", 24, 32, ["daily-cupoms", "discount"]);
+
+console.log(newCostumer)
+console.log(newMember);
