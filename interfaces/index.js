@@ -19,3 +19,11 @@ var newStudent = {
     reagistrationId: 20150321,
     contact: 7893732432,
 };
+var newVerifiedStudent = {
+    name: "Gustavo",
+    age: 17,
+    reagistrationId: 20150321,
+    contact: 7893732432,
+    verified: true,
+    busSeat: 23,
+};

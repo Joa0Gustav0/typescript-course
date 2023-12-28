@@ -57,3 +57,18 @@ var newStudent: student = {
     reagistrationId: 20150321,
     contact: 7893732432,
 }
+
+//Interface extends
+interface verifiedStudent extends student {
+    verified: true
+    busSeat: number,
+}
+
+var newVerifiedStudent: verifiedStudent = {
+    name: "Gustavo",
+    age: 17,
+    reagistrationId: 20150321,
+    contact: 7893732432,
+    verified: true,
+    busSeat: 23,
+}
