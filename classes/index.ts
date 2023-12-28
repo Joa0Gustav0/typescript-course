@@ -108,3 +108,27 @@ class user {
 const newUser = new user();
 newUser.p = { n: "Gustavo", p: "gustavo2409" };
 console.log(newUser.display);
+
+//------------------
+
+class child {
+  name;
+  age;
+
+  constructor(n: string, a: number) {
+    this.name = n;
+    this.age = a;
+  }
+
+  static compareAge(c1: child, c2: child) {
+    if (c1.age > c2.age) {
+        return c1.name + " is older than " + c2.name;
+    }
+    return c2.name + " is older than " + c1.name;
+  }
+}
+
+const child1 = new child("Robert", 7);
+const child2 = new child("Julia", 4);
+console.log(child.compareAge(child1, child2))
+

@@ -85,3 +85,20 @@ var user = /** @class */ (function () {
 var newUser = new user();
 newUser.p = { n: "Gustavo", p: "gustavo2409" };
 console.log(newUser.display);
+//------------------
+var child = /** @class */ (function () {
+    function child(n, a) {
+        this.name = n;
+        this.age = a;
+    }
+    child.compareAge = function (c1, c2) {
+        if (c1.age > c2.age) {
+            return c1.name + " is older than " + c2.name;
+        }
+        return c2.name + " is older than " + c1.name;
+    };
+    return child;
+}());
+var child1 = new child("Robert", 7);
+var child2 = new child("Julia", 4);
+console.log(child.compareAge(child1, child2));
