@@ -40,3 +40,20 @@ newMemberUser({
   },
 });
 
+//Reopening the interface
+interface student {
+  name: string;
+  age: number;
+  readonly reagistrationId: number;
+}
+
+interface student {
+    contact: string | number;
+}
+
+var newStudent: student = {
+    name: "Gustavo",
+    age: 17,
+    reagistrationId: 20150321,
+    contact: 7893732432,
+}

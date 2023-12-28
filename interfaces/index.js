@@ -13,3 +13,9 @@ newMemberUser({
         return "members24237";
     },
 });
+var newStudent = {
+    name: "Gustavo",
+    age: 17,
+    reagistrationId: 20150321,
+    contact: 7893732432,
+};
