@@ -140,8 +140,8 @@ class costumer {
 class memberCostumer extends costumer {
   benefits;
 
-  constructor (n: string, a: number, nos: number, b: Array<string>) {
-    super (n, a, nos);
+  constructor(n: string, a: number, nos: number, b: Array<string>) {
+    super(n, a, nos);
     this.benefits = b;
   }
 
@@ -151,7 +151,35 @@ class memberCostumer extends costumer {
 }
 
 const newCostumer = new costumer("Gustavo", 24, 32);
-const newMember = new memberCostumer("Gustavo", 24, 32, ["daily-cupoms", "discount"]);
+const newMember = new memberCostumer("Gustavo", 24, 32, [
+  "daily-cupoms",
+  "discount",
+]);
 
-console.log(newCostumer)
+console.log(newCostumer);
 console.log(newMember);
+
+//-----------------
+
+//Factory function
+function Cat(name: string) {
+  return {
+    name: () => console.log(name),
+    sound: () => console.log("Meow..."),
+  };
+}
+
+const myCat = Cat("Julio");
+myCat.name();
+myCat.sound();
+
+//Constructor function
+function Rat(name: string) {
+  //const this = {};
+  this.name = () => console.log(name);
+  this.eat = () => console.log(name, "is eating carrot...");
+  //return this;
+}
+
+const myRat = new Rat("René");
+myRat.eat();

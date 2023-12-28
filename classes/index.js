@@ -131,6 +131,29 @@ var memberCostumer = /** @class */ (function (_super) {
     return memberCostumer;
 }(costumer));
 var newCostumer = new costumer("Gustavo", 24, 32);
-var newMember = new memberCostumer("Gustavo", 24, 32, ["daily-cupoms", "discount"]);
+var newMember = new memberCostumer("Gustavo", 24, 32, [
+    "daily-cupoms",
+    "discount",
+]);
 console.log(newCostumer);
 console.log(newMember);
+//-----------------
+//Factory function
+function Cat(name) {
+    return {
+        name: function () { return console.log(name); },
+        sound: function () { return console.log("Meow..."); },
+    };
+}
+var myCat = Cat("Julio");
+myCat.name();
+myCat.sound();
+//Constructor function
+function Rat(name) {
+    //const this = {};
+    this.name = function () { return console.log(name); };
+    this.eat = function () { return console.log(name, "is eating carrot..."); };
+    //return this;
+}
+var myRat = new Rat("René");
+myRat.eat();
