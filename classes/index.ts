@@ -183,3 +183,47 @@ function Rat(name: string) {
 
 const myRat = new Rat("René");
 myRat.eat();
+
+//Inheritance in factory function
+function ninja(n: string) {
+  return {
+    name: () => console.log(n),
+    atack: () => console.log(n, "atacked!"),
+  };
+}
+
+function specialNinja(n: string) {
+  return Object.create(ninja(n), {
+    specialAtack: {
+      value: () => console.log(n, "used special atack!!!"),
+    },
+  });
+}
+
+const mySamurai = specialNinja("Hiruzen");
+mySamurai.specialAtack();
+
+//Inheritance in constructor function
+function Car(c: { brand: string; model: string; color: string }) {
+  this.brand = c.brand;
+  this.model = c.model;
+  this.color = c.color;
+
+  this.show = () =>
+    console.log("Esse é um carro", c.color, c.model, "da marca", c.brand + ".");
+}
+
+function SuperCar(
+  c: { brand: string; model: string; color: string },
+  e: string
+) {
+  Car.call(this, c);
+  this.engine = () => console.log("Esse carro possui um motor", e);
+}
+
+const mySuperCar = new SuperCar(
+  { brand: "Volkswagen", model: "SUV", color: "red" },
+  "V8"
+);
+mySuperCar.show();
+mySuperCar.engine();

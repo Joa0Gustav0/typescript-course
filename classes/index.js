@@ -157,3 +157,35 @@ function Rat(name) {
 }
 var myRat = new Rat("René");
 myRat.eat();
+//Inheritance in factory function
+function ninja(n) {
+    return {
+        name: function () { return console.log(n); },
+        atack: function () { return console.log(n, "atacked!"); },
+    };
+}
+function specialNinja(n) {
+    return Object.create(ninja(n), {
+        specialAtack: {
+            value: function () { return console.log(n, "used special atack!!!"); },
+        },
+    });
+}
+var mySamurai = specialNinja("Hiruzen");
+mySamurai.specialAtack();
+//Inheritance in constructor function
+function Car(c) {
+    this.brand = c.brand;
+    this.model = c.model;
+    this.color = c.color;
+    this.show = function () {
+        return console.log("Esse é um carro", c.color, c.model, "da marca", c.brand + ".");
+    };
+}
+function SuperCar(c, e) {
+    Car.call(this, c);
+    this.engine = function () { return console.log("Esse carro possui um motor", e); };
+}
+var mySuperCar = new SuperCar({ brand: "Volkswagen", model: "SUV", color: "red" }, "V8");
+mySuperCar.show();
+mySuperCar.engine();
