@@ -213,17 +213,62 @@ function Car(c: { brand: string; model: string; color: string }) {
     console.log("Esse é um carro", c.color, c.model, "da marca", c.brand + ".");
 }
 
-function SuperCar(
-  c: { brand: string; model: string; color: string },
-  e: string
-) {
-  Car.call(this, c);
-  this.engine = () => console.log("Esse carro possui um motor", e);
+function SuperCar(c: { brand: string; model: string; color: string }) {
+  this.__proto__ = new Car(c);
+  this.turbo = () => console.log("WOOOOOOOW! MODO TURBO ATIVADO!");
 }
 
-const mySuperCar = new SuperCar(
-  { brand: "Volkswagen", model: "SUV", color: "red" },
-  "V8"
-);
+const mySuperCar = new SuperCar({
+  brand: "Volkswagen",
+  model: "SUV",
+  color: "red",
+});
 mySuperCar.show();
-mySuperCar.engine();
+mySuperCar.turbo();
+
+/* function createUser(d: { u: string; p: string }) {
+  return {
+    username: d.u,
+    password: d.p,
+
+    data() {
+      console.log(this.username);
+      console.log(this.password);
+    },
+  };
+}
+
+function createMemberUser(d: { u: string; p: string }) {
+  return Object.create(createUser(d), {
+    benefits: {
+      value: ["free-cupoms"],
+    },
+  });
+}
+
+const myUser = createUser({ u: "xevil300", p: "sada32323" });
+myUser.data();
+const myMemberUser = createMemberUser({ u: "xevil300", p: "sada32323" });
+myMemberUser.data();
+console.log(myMemberUser.benefits); */
+
+/* function User(d: { u: string; p: string }) {
+  this.username = d.u;
+  this.password = d.p;
+
+  this.data = () => {
+    console.log(this.username);
+    console.log(this.password);
+  };
+}
+
+function MemberUser(d: { u: string; p: string }) {
+  User.call(this, d);
+  this.benefits = () => console.log(["free-cupoms"])
+}
+
+const myUser = new User({ u: "xevil300", p: "sadsa788" })
+myUser.data();
+const myMemberUser = new MemberUser({ u: "xevil300", p: "sadsa788" })
+myMemberUser.data();
+myMemberUser.benefits(); */
