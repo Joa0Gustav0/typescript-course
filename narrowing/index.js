@@ -95,3 +95,18 @@ var Shape = /** @class */ (function () {
 }());
 var myShape = new Shape({ kind: "circle", radius: 16 });
 console.log(Shape.getArea(myShape).toFixed(2));
+function analysis(val) {
+    switch (typeof val) {
+        case "string":
+            return val + "-Addition";
+        case "number":
+            return val + 2;
+        case "boolean":
+            return !val;
+        case "object":
+            return;
+        default:
+            var _exhaustiveCheck = val;
+    }
+}
+console.log(analysis(2));

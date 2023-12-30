@@ -149,3 +149,23 @@ class Shape {
 
 const myShape = new Shape({kind: "circle", radius: 16});
 console.log(Shape.getArea(myShape).toFixed(2));
+
+//Exhaustive Check
+type possibilities = string | number | boolean | shapes;
+
+function analysis(val: possibilities) {
+  switch (typeof val) {
+    case "string":
+      return val + "-Addition";
+    case "number":
+      return val + 2;
+    case "boolean":
+      return !val;
+    case "object":
+      return
+    default:
+      const _exhaustiveCheck: never = val;
+  }
+}
+
+console.log(analysis(2));
