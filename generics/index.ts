@@ -33,3 +33,54 @@ const pop = <T>(val: T[]): T => {
 }
 
 console.log("New last element: " + pop([1, 2]));
+
+//--------------------
+
+function getProperty<T, Tprop extends keyof T>(obj: T, objProp: Tprop) {
+  return obj[objProp];
+}
+
+const myUser = {
+  name: "sadsada",
+  age: 34,
+}
+
+console.log(getProperty(myUser, "age"));
+
+//--------------------
+
+interface products {
+  item: string,
+  price: number,
+}
+
+interface specialProducts extends products {
+  verified: true,
+}
+
+class Cart<T>{
+  cart: T[] = [];
+
+  showCart() {
+    console.log(this.cart);
+  }
+  addToCart(product: T) {
+    this.cart.push(product);
+    return this;
+  }
+} 
+
+const myCart = new Cart<products>();
+myCart.addToCart({
+  item: "Pan",
+  price: 21.32,
+});
+myCart.showCart();
+
+const mySpecialCart = new Cart<specialProducts>();
+mySpecialCart.addToCart({
+  item: "Fan",
+  price: 65,
+  verified: true,
+})
+mySpecialCart.showCart();
