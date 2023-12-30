@@ -120,3 +120,32 @@ const newTeacher = new SchoolPersona<teacher>({
 });
 
 SchoolPersona.checkType(newTeacher);
+
+//----------------
+//Discriminated Unions
+interface _Shapes {
+  kind: "circle" | "square";
+}
+interface Square extends _Shapes {
+  sideLength: number;
+}
+interface Circle extends _Shapes {
+  radius: number;
+}
+type shapes = Circle | Square;
+
+class Shape {
+  data;
+  constructor(d: shapes) {
+    this.data = d;
+  }
+
+  static getArea(shape: Shape): number {
+    if (shape.data.kind === "square")
+      return shape.data.sideLength**2;
+    return Math.PI * shape.data.radius**2;
+  }
+}
+
+const myShape = new Shape({kind: "circle", radius: 16});
+console.log(Shape.getArea(myShape).toFixed(2));

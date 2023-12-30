@@ -82,3 +82,16 @@ var newTeacher = new SchoolPersona({
     teachersRoomAccess: true,
 });
 SchoolPersona.checkType(newTeacher);
+var Shape = /** @class */ (function () {
+    function Shape(d) {
+        this.data = d;
+    }
+    Shape.getArea = function (shape) {
+        if (shape.data.kind === "square")
+            return Math.pow(shape.data.sideLength, 2);
+        return Math.PI * Math.pow(shape.data.radius, 2);
+    };
+    return Shape;
+}());
+var myShape = new Shape({ kind: "circle", radius: 16 });
+console.log(Shape.getArea(myShape).toFixed(2));
