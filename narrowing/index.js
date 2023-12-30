@@ -19,3 +19,18 @@ constructFrame({
     widthSize: 5,
     height: 5,
 });
+var Animal = /** @class */ (function () {
+    function Animal(data) {
+        this.data = data;
+    }
+    Animal.identity = function (animal) {
+        if ("canJump" in animal.data) {
+            console.log(animal.data.petName, "is a monkey!");
+            return;
+        }
+        console.log(animal.data.petName, "is an eagle.");
+    };
+    return Animal;
+}());
+var myAnimal = new Animal({ petName: "Flavio", canFly: true });
+Animal.identity(myAnimal);

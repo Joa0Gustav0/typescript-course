@@ -18,3 +18,28 @@ constructFrame({
   widthSize: 5,
   height: 5,
 });
+
+interface animals {
+  petName: string;
+}
+interface monkey extends animals {
+  canJump: true;
+}
+interface eagle extends animals {
+  canFly: true;
+}
+
+class Animal<T>{
+  constructor(public data: T) {}
+  
+  static identity(animal) {
+    if ("canJump" in animal.data) {
+      console.log(animal.data.petName, "is a monkey!")
+      return;
+    }
+    console.log(animal.data.petName, "is an eagle.")
+  }
+}
+
+const myAnimal = new Animal<eagle>({petName: "Flavio", canFly: true})
+Animal.identity(myAnimal);
