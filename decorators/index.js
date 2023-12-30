@@ -33,21 +33,52 @@ function checkQuote() {
         Object.defineProperty(constructor, propKey, { get: getter, set: setter });
     };
 }
+function dataChanger() {
+    return (constructor, methodKey, descriptor) => {
+        const originalMethod = descriptor.value;
+        descriptor.value = (...args) => {
+            switch (args[0]) {
+                case "username":
+                    if (args[1].length < 4) {
+                        throw new Error(args[1] +
+                            " is invalid. Data for " +
+                            args[0] +
+                            " should have at least 4 characters.");
+                    }
+                case "password":
+                    if (args[1].length < 6) {
+                        throw new Error(args[1] +
+                            " is invalid. Data for " +
+                            args[0] +
+                            " should have at least 6 characters.");
+                    }
+            }
+            originalMethod.apply(args[2], args);
+            return descriptor;
+        };
+    };
+}
 //Class Decorator
 let User = class User {
-    constructor(username, password, quote) {
+    //Method Decorator
+    changeData(dataKey, newData, current) {
+        this.data[dataKey] = newData;
+    }
+    constructor(data, quote) {
+        this.data = data;
         this.quote = quote;
-        this.data = () => console.log({
-            username: username,
-            password: password,
-        });
     }
 };
 __decorate([
     checkQuote()
 ], User.prototype, "quote", void 0);
+__decorate([
+    dataChanger()
+], User.prototype, "changeData", null);
 User = __decorate([
     logger
 ], User);
-const newUser = new User("Gustavo", "Gustavo2409", "Penso logo existo.");
+const newUser = new User({ username: "Gustavo", password: "Gustavo2409" }, "Penso logo existo.");
 console.log(newUser.quote);
+newUser.changeData("password", "2409Gustavo2409", newUser);
+console.log(newUser.data);
