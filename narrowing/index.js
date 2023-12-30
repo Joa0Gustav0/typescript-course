@@ -33,10 +33,52 @@ var Animal = /** @class */ (function () {
     };
     return Animal;
 }());
-var myAnimal = new Animal({ petName: "Flavio", canFly: true, favoriteFood: "Seeds" });
+var myAnimal = new Animal({
+    petName: "Flavio",
+    canFly: true,
+    favoriteFood: "Seeds",
+});
 Animal.identity(myAnimal);
 //Type Predicates
 function matches(animal) {
     return animal !== undefined;
 }
 console.log(matches(myAnimal));
+//------------
+//Review
+function add(val) {
+    if (typeof val === "string") {
+        return val + "2";
+    }
+    return (val += 2);
+}
+console.log(add("ID21231-"));
+console.log(add(3));
+var SchoolPersona = /** @class */ (function () {
+    function SchoolPersona(d) {
+        this.data = d;
+    }
+    SchoolPersona.checkType = function (sp) {
+        /* if ("teachersRoomAccess" in sp.data) {
+          console.log("This person is a teacher.");
+          return;
+        }
+        console.log("This person is a student."); */
+        if (sp.data.teachersRoomAccess) {
+            console.log("This person is a teacher.");
+            return;
+        }
+        console.log("This person is a student.");
+    };
+    return SchoolPersona;
+}());
+var newStudent = new SchoolPersona({
+    name: "Gustavo",
+    age: 14,
+});
+var newTeacher = new SchoolPersona({
+    name: "Sara",
+    age: 42,
+    teachersRoomAccess: true,
+});
+SchoolPersona.checkType(newTeacher);
