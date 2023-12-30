@@ -24,15 +24,18 @@ interface animals {
 }
 interface monkey extends animals {
   canJump: true;
+  favoriteFood: "Banana";
 }
 interface eagle extends animals {
   canFly: true;
+  favoriteFood: "Seeds";
 }
 
 class Animal<T>{
   constructor(public data: T) {}
   
   static identity(animal) {
+    //The In Narrowing Operator
     if ("canJump" in animal.data) {
       console.log(animal.data.petName, "is a monkey!")
       return;
@@ -41,5 +44,12 @@ class Animal<T>{
   }
 }
 
-const myAnimal = new Animal<eagle>({petName: "Flavio", canFly: true})
+const myAnimal = new Animal<eagle>({petName: "Flavio", canFly: true, favoriteFood: "Seeds"})
 Animal.identity(myAnimal);
+
+//Type Predicates
+function matches(animal: Animal<eagle | monkey>) {
+  return (animal as Animal<monkey>) !== undefined;
+}
+
+console.log(matches(myAnimal))

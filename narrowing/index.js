@@ -24,6 +24,7 @@ var Animal = /** @class */ (function () {
         this.data = data;
     }
     Animal.identity = function (animal) {
+        //The In Narrowing Operator
         if ("canJump" in animal.data) {
             console.log(animal.data.petName, "is a monkey!");
             return;
@@ -32,5 +33,10 @@ var Animal = /** @class */ (function () {
     };
     return Animal;
 }());
-var myAnimal = new Animal({ petName: "Flavio", canFly: true });
+var myAnimal = new Animal({ petName: "Flavio", canFly: true, favoriteFood: "Seeds" });
 Animal.identity(myAnimal);
+//Type Predicates
+function matches(animal) {
+    return animal !== undefined;
+}
+console.log(matches(myAnimal));
